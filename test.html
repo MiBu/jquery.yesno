@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>jquery.yesno demo</title>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="jquery.yesno.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span12">
+                <h1>jQuery.YesNo demo</h1>
+                <p class="">I used Google homepage as link here. Hope they won't mind.'</p>
+
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span6">
+                <fieldset>
+                    <legend>No options:</legend>
+                    <a href="http://google.com" class="btn btn-primary" data-yn-confirm="confirm">Click me</a>
+                </fieldset>
+                <fieldset>
+                    <legend>Custome options inside data dash attributes</legend>
+                    <a href="http://google.com" class="btn btn-primary" data-yn-text="Are you sure you are going to do this?" data-yn-no="No. Go back." data-yn-yes="I'm sure" data-yn-title="Warning!" data-yn-confirm="confirm">Click me</a>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Submit button of the form</legend>
+                    <form id="post-form" action="http://www.google.com" method="post">
+                        <button type="submit" class="btn btn-primary" data-yn-text="You are going to post this form?" data-yn-confirm="confirm">Click me</button>
+                    </form>
+                </fieldset>
+                <fieldset>
+                    <legend>Submitting form using data dash attribute</legend>
+                    <button type="submit" class="btn btn-primary" data-yn-text="You are going to post some other form?" data-yn-post="true" data-yn-formId="post-form1" data-yn-confirm="confirm">Click me</button>
+                    <form id="post-form1" action="http://www.google.com" method="post"></form>
+                </fieldset>
+            </div>
+            <div class="span6">
+                <div class="alert">
+                    <pre>
+    // Default settings, can be overriden outside
+    $.fn.yesno.defaults = {
+        text: "Are you sure you want to do this?", //text in body
+        yes: "Yes", //text in confirm button
+        no: "No", //text in cancel button
+        title: "Are you sure?", //title of modal
+        post: false, //if element action=post and type!="submit"
+        formid: "" //id of the form to post
+    };
+</pre>
+                </div>
+                <div class="alert">
+                    <pre>
+    $.fn.yesno.parameters = {
+        autoinit: true, // if false, you need to init script manually
+        buttonminwidth: "100px" // min width of buttons
+    };
+</pre>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>
