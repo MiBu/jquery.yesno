@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Jquery.yesno : jQuery confirmation dialog." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="javascripts/jquery.yesno.js"></script>
+    <title>Jquery.yesno</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/MiBu/jquery.yesno">View on GitHub</a>
+
+          <h1 id="project_title">Jquery.yesno</h1>
+          <h2 id="project_tagline">jQuery confirmation dialog.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/MiBu/jquery.yesno/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/MiBu/jquery.yesno/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span12">
+        <h1>
+<a name="jqueryyesno-plugin" class="anchor" href="#jqueryyesno-plugin"><span class="octicon octicon-link"></span></a>jQuery.yesno demo</h1>
+<div class="row-fluid">
+        </div>
+        <div class="row-fluid">
+            <div class="span6">
+                <fieldset>
+                    <legend>No options:</legend>
+                    <a href="http://google.com" class="btn btn-primary" data-yn-confirm="confirm">Click me</a>
+                </fieldset>
+                <fieldset>
+                    <legend>Custom options inside data dash attributes</legend>
+					<div class="alert">
+					<p>
+					data-yn-text="Are you sure you are going to do this?" </p>
+				
+					<p>
+					 data-yn-no="No. Go back." 
+					 </p>
+					 <p>
+					 data-yn-yes="I'm sure" 
+					 </p>
+					 <p>
+					 data-yn-title="Warning!" 
+					 </p>
+					 <p>
+					 data-yn-confirm="confirm"
+					 </p>
+					
+					</div>
+                    <a href="http://google.com" class="btn btn-primary" data-yn-text="Are you sure you are going to do this?" data-yn-no="No. Go back." data-yn-yes="I'm sure" data-yn-title="Warning!" data-yn-confirm="confirm">Click me</a>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Submit button of the form</legend>
+                    <form id="post-form" action="http://www.google.com" method="post">
+                        <button type="submit" class="btn btn-primary" data-yn-text="You are going to post this form?" data-yn-confirm="confirm">Click me</button>
+                    </form>
+                </fieldset>
+                <fieldset>
+                    <legend>Submitting form using data dash attribute</legend>
+                    <button type="submit" class="btn btn-primary" data-yn-text="You are going to post some other form?" data-yn-post="true" data-yn-formId="post-form1" data-yn-confirm="confirm">Click me</button>
+                    <form id="post-form1" action="http://www.google.com" method="post"></form>
+                </fieldset>
+            </div>
+            <div class="span6">
+                <div class="alert">
+                    <pre>
+    // Default settings, can be overriden outside
+    $.fn.yesno.defaults = {
+        text: "Are you sure you want to do this?", //text in body
+        yes: "Yes", //text in confirm button
+        no: "No", //text in cancel button
+        title: "Are you sure?", //title of modal
+        post: false, //if element action=post and type!="submit"
+        formid: "" //id of the form to post
+    };
+</pre>
+                </div>
+                <div class="alert">
+                    <pre>
+    $.fn.yesno.parameters = {
+        autoinit: true, // if false, you need to init script manually
+        buttonminwidth: "100px" // min width of buttons
+    };
+</pre>
+                </div>
+            </div>
+</div>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+    </div>
+</div>
+</div>
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Jquery.yesno maintained by <a href="https://github.com/MiBu">MiBu</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-43481975-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
