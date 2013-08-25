@@ -5,6 +5,10 @@ jQuery.yesno plugin
 
 Plugin for easy integration of confirmation dialogs to links, buttons, forms using only data- attributes.
 
+
+**See in action**: http://mibu.github.io/jquery.yesno/
+
+
 **Requirements**:
 
 - Twitter bootstrap css
