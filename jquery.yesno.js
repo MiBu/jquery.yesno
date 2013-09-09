@@ -8,7 +8,7 @@
 
 (function ($) {
 
-    // Attach yesno to html element	
+    // Attach yesno to html element 
     $.fn.yesno = function (options) {
 
         var self = $(this);
@@ -30,9 +30,60 @@
         // and merge them into "options". 
         var settings = $.extend({}, $.fn.yesno.defaults, options);
 
+        //Does actual work when confirmation button was clicked
         settings.confirm = function () {
+
+            //Try to get all the attributes related to action that will be confirmed
             var url = elem.attr("href");
-            if (elem.data("yn-post") === true) {
+            var method = elem.data("yn-method");
+            var action = elem.data("yn-action");
+            var success = elem.data("yn-success");
+            var error = elem.data("yn-error");
+            var form = elem.data("yn-formid");
+
+            //If action or href attributes exist, it's asumed that we want to do an ajax call
+            //Action attribute super seeds href attribute
+            if (action || url)
+            {
+                //Set ajax options
+                var ajaxOptions = {};
+                ajaxOptions.url = action ? action : url;
+                ajaxOptions.type = method ? method : "GET";
+
+                //If formId exists we will add form data to ajax call and send it as JSON
+                if (form)
+                {
+                    var $form = $("#" + form);
+                    var formData = {};
+                    $form.serializeArray().map(function (val) { return formData[val.name] = val.value; });
+                    ajaxOptions.data = formData;
+                    ajaxOptions.dataType = "JSON";
+                }
+
+                //if success attribute exists, set success function delegate
+                if(success)
+                {
+                    ajaxOptions.success = function (data) {
+                        var successFunction = window[success];
+                        if (successFunction)
+                            successFunction.call(data);
+                    };    
+                }
+                
+                //if error attribute exists, set error function delegate
+                if(error)
+                {
+                    ajaxOptions.error = function (data) {
+                        var errorFunction = window[error];
+                        if (errorFunction)
+                            errorFunction.call(data);
+                    };
+                }
+                
+                //Do  ajax call
+                $.ajax(ajaxOptions);
+            }
+            else if (elem.data("yn-post") === true) {
                 var form = $("#" + elem.data("yn-formid"));
                 form.submit();
             } else if (elem.attr("type") === "submit") {
@@ -67,10 +118,10 @@
             '<button class="cancel btn" type="button" data-dismiss="modal" style="min-width:' + $.fn.yesno.parameters.buttonminwidth + '" >'
             + settings.no + '</button>';
         var yesButtonHtml =
-	        '<button class="confirm btn btn-primary" type="button" data-dismiss="modal" style="min-width:' + $.fn.yesno.parameters.buttonminwidth + '" >'
-	        + settings.yes + '</button>';
+            '<button class="confirm btn btn-primary" type="button" data-dismiss="modal" style="min-width:' + $.fn.yesno.parameters.buttonminwidth + '" >'
+            + settings.yes + '</button>';
         var markup = '<div id="yesnoDialog" class="modal hide fade" data-backdrop="static" tabindex="-1" role="dialog">'
-	        + '<div class="modal-header"><h2>' + settings.title + '</h2></div>'
+            + '<div class="modal-header"><h2>' + settings.title + '</h2></div>'
             + '<div class="modal-body">' + settings.text + '</div>'
             + '<div class="modal-footer">' + noButtonHtml + yesButtonHtml + '</div>'
             + '</div>';
